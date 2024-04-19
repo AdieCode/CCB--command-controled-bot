@@ -36,12 +36,13 @@ class Bot {
         }
     }
     
-    addCommand(text){
-        this._commandList.push(text);
+    addCommand(command){
+        this._commandList.push(command);
+        this._commandSteps[command] = [];
     }
     
-    setAsCurrentCommand(text){
-        this._command = text;
+    setAsCurrentCommand(command){
+        this._command = command;
     }
     
     clearUserInput(){
@@ -55,7 +56,6 @@ class Bot {
             this._commandSteps[command].push(newFunction);
         } else {
             this.addCommand(command);
-            this._commandSteps[command] = [];
             this._commandSteps[command].push(newFunction);
         }
     }
@@ -72,7 +72,6 @@ class Bot {
 
         } else {
             this.addCommand(command);
-            this._commandSteps[command] = [];
             newFunctions.forEach(func => {
                 this._commandSteps[command].push(func);
             });
