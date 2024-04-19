@@ -35,20 +35,21 @@ const myBot = new Bot;
 
 ```javascript
 function askWord(){
-    myBot.next()  // to proceed to the next function
-    return 'please enter a word' // return bot response
+   myBot.next()  // to proceed to the next function
+   return 'please enter a word' // return bot response
 }
 
 function repeatWord(){
     const word = myBot.userInput; //retrieve user input 
 
-    if (isName(word)){ // validate input
+   // validate input
+   if (isOneWord(word)){ 
         myBot.next() // proceed to the next function in the list if there is one
+        
         return `your word was: ${word}` // return bot response
-    } else {
-        return 'Sorry could you please enter a word'
-    }
-
+   } else {
+        return 'Sorry could you please enter a word' // return bot response
+   }
 }
 ```
 
