@@ -25,7 +25,7 @@ This chatbot is implemented in JavaScript and allows for basic conversation hand
 ### Import the class
 + Import the class and create an new inctance.
 
-```
+```javascript
 const Bot = require('../modules/bot')
 const myBot = new Bot;
 ```
@@ -33,7 +33,7 @@ const myBot = new Bot;
 ### Create functions
 + create functions to handel user input and bot logic.
 
-```
+```javascript
 function askWord(){
     myBot.next()  // to proceed to the next function
     return 'please enter a word' // return bot response
@@ -56,7 +56,7 @@ function repeatWord(){
 + Give the bot the functions in the following way. 
 + Command will automatically be created when the first step is added.
 
-```
+```javascript
 // adding the functions to handle the '/word' command, one by one
 
 myBot.addStep('/word',askWord); // step 1
@@ -71,7 +71,7 @@ myBot.addStep('/word',[askWord, repeatWord]); // add in an array of functions
 ### Interact with bot
 + call the respond method and provide an input to recieve the bot's response.
 
-```
+```javascript
 const wordToGive = 'hello';
 
 console.log('Conversation with /word command')
