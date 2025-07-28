@@ -95,6 +95,11 @@ class Bot {
         }
     }
 
+    hasNextStep() {
+        const steps = this._commandSteps[this._command];
+        return steps && this._progress < steps.length;
+    }
+
     
 }
 

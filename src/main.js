@@ -103,4 +103,55 @@ console.log('-------------------------------')
 console.log("user: " + feelingtoGive)
 console.log('-------------------------------')
 console.log('bot: ' + myBot.respond(feelingtoGive))
-console.log('======================================\n')
+console.log('======================================\n\n\n')
+
+
+
+
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+let currentCommand = null;
+
+console.log("Welcome! Type a command to start (/word or /greet). Type 'exit' to quit.");
+
+rl.setPrompt('> ');
+rl.prompt();
+
+rl.on('line', (input) => {
+    if (input === 'exit') {
+        rl.close();
+        return;
+    }
+
+    // If we're not in a conversation, we start one
+    if (!currentCommand) {
+        if (input === '/word' || input === '/greet') {
+            currentCommand = input;
+            const botResponse = myBot.respond(currentCommand);
+            console.log('bot: ' + botResponse);
+        } else {
+            console.log('bot: Please enter a valid command (/word or /greet)');
+        }
+    } else {
+        const botResponse = myBot.respond(input);
+        console.log('bot: ' + botResponse);
+
+        // Check if the conversation ended (i.e., no more steps for the command)
+        if (!myBot.hasNextStep()) {
+            currentCommand = null;
+            console.log('\n--- Conversation ended. Type another command to start again. ---');
+        }
+    }
+
+    rl.prompt();
+});
+
+rl.on('close', () => {
+    console.log('👋 Goodbye!');
+    process.exit(0);
+});
